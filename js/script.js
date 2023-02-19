@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const monthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
   'August', 'September', 'October', 'November', 'December'];
-  const daysArr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday', 'Sunday'];
+  const daysArr = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday'];
   const dayPart = ['Good night,','Good evening,', 'Good afternoon,', 'Good morning,'];
 
   // time - date
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const d = currentDate.getDate();
       const m = currentDate.getMonth();
       const weakDay = currentDate.getDay();
-
+      console.log(weakDay);
       date.innerHTML = `${daysArr[weakDay]}, ${monthArr[m]} ${d}`;
     }
   }
@@ -69,9 +69,37 @@ window.addEventListener('DOMContentLoaded', () => {
   name.addEventListener('input', () => {
     localStorage.setItem('name', name.value);
   });
-    if(localStorage.getItem('name')) {
-      name.setAttribute('value', localStorage.getItem('name'));
-    }
+  if(localStorage.getItem('name')) {
+    name.setAttribute('value', localStorage.getItem('name'));
+  }
 
+  // quotes
+  const randomQuoteBtn = document.querySelector('.change-quote');
+  const quote = document.querySelector('.quote');
+  const author = document.querySelector('.author');
+  randomQuoteBtn.addEventListener('click', () => {
+    getQuote()
+  });
+  function getQuote() {
+    const request = new XMLHttpRequest();
 
+    request.open('GET','js/quotes.json');
+    request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    request.send();
+    request.addEventListener('load', () => {
+      if( request.status === 200) {
+        const data = JSON.parse(request.response);
+        const currentQuote = data.quotes[randomInteger(0,100)]
+        quote.innerHTML = currentQuote.quote;
+        author.innerHTML = currentQuote.author;
+      } 
+      });
+  }
+
+  function randomInteger(min, max) {
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
+  }
+
+  getQuote();
 });
