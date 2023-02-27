@@ -264,6 +264,63 @@ body {
   min-height: 20px;
 }
 
+.composition {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.progress-bar {
+  position: relative;
+  height: 5px;
+  width: 200px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.progress {
+  position: absolute;
+  height: 5px;
+  background-color: #ffe4c4;
+}
+.compositions-times {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.play_active {
+  color:#ffe4c4;
+}
+
+.composition__time-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.volume__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.volume-img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.volume-value {
+  position: relative;
+  height: 10px;
+  background-color: #fff;
+  width: 100px;
+  cursor: pointer;
+}
+.volume-progress {
+  position: absolute;
+  height: 10px;
+  background-color: #ffe4c4;
+}
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
